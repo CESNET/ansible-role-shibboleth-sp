@@ -1,0 +1,6 @@
+### Ansible template
+*.retry
+
+### Idea folder
+.idea
+
