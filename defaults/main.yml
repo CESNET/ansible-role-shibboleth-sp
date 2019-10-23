@@ -1,0 +1,54 @@
+---
+# Specify the hostname
+shibboleth_hostname: "sp.example.org"
+
+# Specify the entityId of Service provider
+shibboleth_sp_entity_id: "https://{{ shibboleth_hostname }}/shibboleth"
+
+###############################################################################
+# Change followed options only if you use the default attribute_map.xml template #
+###############################################################################
+
+# Specify if default urn:oid attributes will be added to attribute map or not
+shibboleth_template_attribute_map_allow_urn_oid_attributes: false
+
+# Specify if default urn:mace attributes will be added to attribute map or not
+shibboleth_template_attribute_map_allow_urn_mace_attributes: false
+
+# Specify if default schac attributes will be added to attribute map or not
+shibboleth_template_attribute_map_allow_schac_attributes: false
+
+# Specify the custom attributes that will be added to attribute map
+# Example of structure:
+#  - id: attributeId (REQUIRED)
+#    name: attributeName (REQUIRED)
+#    comment: Commnent (OPTIONAL)
+#    decoder: (OPTIPNAL)
+#      type: Decoder_type (REQUIRED if decoder is filled)
+shibboleth_template_attribute_map_custom_attributes: []
+
+#############################################################################
+# Change followed options only if you use the default shibboleth2.xml template #
+#############################################################################
+
+# Specify the entityId of Service provider
+shibboleth_template_sp_entity_id: "{{ shibboleth_sp_entityID }}"
+
+# Specify the list of allowed items in REMOTE_USER
+shibboleth_template_remote_users:
+  - eppn
+  - subject-id
+  - pairwise-id
+  - persistent-id
+
+# Specify the attribute prefix
+shibboleth_template_attribute_prefix: "AJP_"
+
+# Specify the entityId of Identity provider
+shibboleth_template_idp_entity_id: "https://idp.example.org/idp/shibboleth"
+
+# Specify the URL where the IdP metadata is available
+shibboleth_template_metadata_url: "http://federation.org/federation-metadata.xml"
+
+# Specify the name of backup file for metadata
+shibboleth_template_metadata_backup_file: "metadata.xml"

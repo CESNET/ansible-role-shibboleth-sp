@@ -1,0 +1,20 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: shibboleth_sp
+  author: Pavel Vyskocil
+  company: CESNET
+  description: Installs and configures shibboleth SP.
+  license: Apache
+  min_ansible_version: 2.5
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+  galaxy_tags:
+    - database
+    - mariadb
+
+allow_duplicates: true

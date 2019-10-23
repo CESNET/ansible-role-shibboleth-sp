@@ -1,0 +1,49 @@
+---
+- name: Install Shibboleth
+  apt:
+    name: libapache2-mod-shib
+    state: latest
+    install_recommends: yes
+  tags:
+    - install
+
+- name: Generate Shibboleth key and cert
+  command: shib-keygen -h {{ shibboleth_hostname }} -e {{ shibboleth_sp_entity_id }}
+  args:
+    chdir: /etc/shibboleth
+    creates: /etc/shibboleth/sp-key.pem
+  notify:
+    - "restart shibd"
+  tags:
+    - install
+
+- name: Copy configuration files
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/shibboleth/{{ item }}"
+  loop:
+    - attribute-map.xml
+    - shibboleth2.xml
+  tags:
+    - configuration
+  notify:
+    - "restart shibd"
+
+- name: Stop Shibboleth SP
+  service:
+    state: stopped
+    name: "shibd"
+  tags:
+    - never
+    - stop
+
+- name: Start Shibboleth SP
+  service:
+    state: started
+    name: "shibd"
+  tags:
+    - never
+    - start
+
+- name: "flush handlers"
+  meta: flush_handlers
