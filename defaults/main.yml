@@ -52,3 +52,6 @@ shibboleth_template_metadata_url: "http://federation.org/federation-metadata.xml
 
 # Specify the name of backup file for metadata
 shibboleth_template_metadata_backup_file: "metadata.xml"
+
+# Specifies where the SWITCHAAI repository .deb package will be downloaded
+shibboleth_template_repository_dest_path: "/opt/switchaai"

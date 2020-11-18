@@ -7,6 +7,7 @@ Ansible galaxy role cesnet.shibboleth_sp that install and configure shibboleth S
 ## Role variables
 * shibboleth_hostname - Specify the hostname 
 * shibboleth_sp_entity_id - Specify the entityId of Service provider
+* shibboleth_template_repository_dest_path - Specifies destination where the SWITCH AAI repository .deb file will be downloaded
 
 ###### Followed options are only for the default attribute_map.xml template
 * shibboleth_template_attribute_map_allow_urn_oid_attributes - Specify if default urn:oid attributes will be added to attribute map or not
@@ -32,6 +33,7 @@ Ansible galaxy role cesnet.shibboleth_sp that install and configure shibboleth S
 * shibboleth_template_metadata_backup_file - Specify the name of backup file for metadata
 
 ## Available tags
+* repository
 * install
 * configuration
 * start
@@ -55,6 +57,7 @@ Ansible galaxy role cesnet.shibboleth_sp that install and configure shibboleth S
     shibboleth_template_idp_entity_id: "https://idp.example.org/idp/shibboleth"
     shibboleth_template_metadata_url: "http://federation.org/federation-metadata.xml"
     shibboleth_template_metadata_backup_file: "metadata.xml"
+    shibboleth_template_repository_dest_path: "/opt/switchaai"
   roles:
-    - cesmet.shibboleth_sp
+    - cesnet.shibboleth_sp
 ```

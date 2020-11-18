@@ -1,8 +1,36 @@
 ---
+
+- name: "Create SWITCHAAI directory in opt"
+  file:
+    path: "{{ shibboleth_template_repository_dest_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - install
+    - repository
+
+- name: "Download SWITCH repository"
+  get_url:
+    url: "https://pkg.switch.ch/switchaai/debian/dists/buster/main/binary-all/misc/switchaai-apt-source_1.0.0_all.deb"
+    dest: "{{ shibboleth_template_repository_dest_path }}"
+  tags:
+    - install
+    - repository
+
+- name: "Install SWITCHAAI reporitory"
+  apt:
+    deb: "{{ shibboleth_template_repository_dest_path }}/switchaai-apt-source_1.0.0_all.deb"
+  tags:
+    - install
+    - repository
+
 - name: Install Shibboleth
   apt:
-    name: libapache2-mod-shib
+    name: shibboleth
     state: latest
+    update_cache: yes
     install_recommends: yes
   tags:
     - install
